@@ -12,10 +12,10 @@ BOWTIE2_COMMAND=$(command -v bowtie2)
 BEDTOOLS_COMMAND=$(command -v bedtools)
 
 # Reference Genome Index
-HISAT2_INDEX=/home/alexandros/tools/hisat2/hisat2-2.1.0/indexes/mm10/genome 
+HISAT2_INDEX=/home/alexandros/genomes/hisat2/mm10/genome 
 
 #Bowtie Index
-BOWTIE2_INDEX=/media/raid/resources/igenomes/Mus_musculus/UCSC/mm10/Sequence/Bowtie2Index/genome # the path and lastly the basename where ref.genome index is stored
+BOWTIE2_INDEX=/home/alexandros/genomes/bowtie2/mm10/genome # the path and lastly the basename where ref.genome index is stored
 
 # Organism; just for reference as it is not used anywhere 
 ORG=mm10
