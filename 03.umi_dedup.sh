@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HOME_PATH=/media/samba/kontogiannis_lab_pheno/data/mgi_rnaseq_02/RIP_analysis_alex/RIP_second_run/
+HOME_PATH=/media/samba/alexandros/analysis
 BAM_PATH=$HOME_PATH/bam_files_bef
 BAM_OUTPATH=$HOME_PATH/bam_umi_dedup
 
@@ -31,4 +31,3 @@ do
     $SAMTOOLS_COMMAND index $FILE &
 done
 
-#umi_tools dedup --output-stats test --stdin KPq10_LPS_ko1.bam --stdout KPq10_LPS_ko1_D2.bam --unmapped-reads use --paired
