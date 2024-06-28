@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Directory variables
-HOME_PATH=/media/samba/kontogiannis_lab_pheno/data/mgi_rnaseq_02/RIP_analysis_alex/RIP_second_run/
-FASTQ_PATH=/media/samba/kontogiannis_lab_pheno/data/mgi_rnaseq_02/RIP_analysis_alex/RIP_second_run/fastq_files/fastq_files_umi-extracted
+HOME_PATH=/media/samba/alexandros/analysis
+FASTQ_PATH=/media/samba/alexandros/fastq_files/fastq_files_umi-extracted
 BAM_PATH=$FASTQ_PATH/hisat_files #the dir inside home_path dir, where hisat2 output files will be stored 
 
 # Command tool variables
@@ -13,9 +13,6 @@ BEDTOOLS_COMMAND=/home/alexandros/tools/bedtools2/bin/bedtools
 
 # Reference Genome Index
 HISAT2_INDEX=/home/alexandros/tools/hisat2/hisat2-2.1.0/indexes/mm10/genome 
-TRANSCRIPTOME_INDEX=/media/raid/users/alexandros/tools/hisat2/hisat2-2.1.0/indexes/mm10_spliced_sites.txt
-#the path to the dir containing the hisat2 reference genome index; it is required to have that name and value (see p.5 of manual and getting started) 
-#as HISAT2 will look here for the indexes; the "/genome" is the basename is the name of any of the index files up to but not including the final .1.ht2 / etc.
 
 #Bowtie Index
 BOWTIE2_INDEX=/media/raid/resources/igenomes/Mus_musculus/UCSC/mm10/Sequence/Bowtie2Index/genome # the path and lastly the basename where ref.genome index is stored
