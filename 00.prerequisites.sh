@@ -1,9 +1,33 @@
 #Tools you need to perform the pipeline:
+#umi_tools
 #samtools
 #bedtools
 #bowtie2
 #hisat2
 
+
+#Genome information you need. In the current example, mm10 is used as a genome template.
+
+###Install umi_tools
+
+if command -v umi_tools &> /dev/null
+then
+    echo "UMI-tools is already installed."
+else
+    echo "UMI-tools is not installed. Installing now."
+
+    # Update package list and install umi_tools
+    sudo apt-get update
+    sudo apt-get install -y umi-tools
+
+    # Verify installation
+    if command -v umi_tools &> /dev/null
+    then
+        echo "UMI-tools has been successfully installed."
+    else
+        echo "Failed to install UMI-tools."
+    fi
+fi
 
 ### Install samtools
 
