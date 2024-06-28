@@ -2,7 +2,7 @@
 
 # Directory variables
 HOME_PATH=/media/samba/alexandros/analysis
-FASTQ_PATH=/media/samba/alexandros/fastq_files/fastq_files_umi-extracted
+FASTQ_PATH=$HOME_PATH/fastq_files/fastq_files_umi-extracted
 BAM_PATH=$FASTQ_PATH/hisat_files #the dir inside home_path dir, where hisat2 output files will be stored 
 
 # Command tool variables
