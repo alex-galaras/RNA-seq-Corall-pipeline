@@ -1,3 +1,4 @@
+UMI_TOOLS=$(command -v umi_tools)
 FASTQ_PATH=/media/samba/alexandros/fastq_files
 FASTQ_OUTPATH=$FASTQ_PATH/fastq_files_umi-extracted
 
@@ -14,7 +15,7 @@ do
     SAMPLE=`basename $FILE | sed s/_1\.fq\.gz//`
     echo "===== Processing $SAMPLE..."
     
-    umi_tools extract \
+    $UMI_TOOLS extract \
       --bc-pattern=$BCPAT \
       --stdin $FASTQ_PATH/$SAMPLE"_1.fq.gz" \
       --stdout $FASTQ_OUTPATH/$SAMPLE"_ext_1.fq.gz" \
