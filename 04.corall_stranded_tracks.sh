@@ -6,7 +6,7 @@ BIGWIG_DIR=$BAM_DIR/bigwigs
 CORES=24
 LINK=http://epigenomics.fleming.gr/~alexandros/
 BEDTOOLS=$(command -v bedtools)
-KENTTOOLS=/home/alexandros/tools/bedGraphToBigWig
+KENTTOOLS=$(command -v bedGraphToBigWig)
 GENOME=/media/raid/resources/igenomes/Mus_musculus/UCSC/mm10/Annotation/Genes/ChromInfo.txt
 
 mkdir -p $BEDGRAPH_DIR
