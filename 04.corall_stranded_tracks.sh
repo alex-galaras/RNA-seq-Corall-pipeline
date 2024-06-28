@@ -1,8 +1,8 @@
-CORES=24
 NORMALIZE=/home/alexandros/work/scripts/normalize_bedgraph.pl
-BAM_DIR=/media/samba/kontogiannis_lab_pheno/data/mgi_rnaseq_02/RIP_analysis_alex/RIP_second_run/bam_umi_dedup
+BAM_DIR=/media/samba/abam_umi_dedup
 BEDGRAPH_DIR=$BAM_DIR/bedgraphs
 BIGWIG_DIR=$BAM_DIR/bigwigs
+CORES=24
 LINK=http://epigenomics.fleming.gr/~alexandros/kontogiannis2024/coral
 
 mkdir -p $BEDGRAPH_DIR
