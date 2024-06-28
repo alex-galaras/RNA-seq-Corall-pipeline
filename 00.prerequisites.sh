@@ -8,9 +8,16 @@
 
 
 #Genome information you need. In the current example, mm10 is used as a genome template.
-#Bowtie2 index of mm10 (genome) - Download them manually from https://benlangmead.github.io/aws-indexes/bowtie/
+#Bowtie2 index of mm10 (genome) - Download them manually from https://benlangmead.github.io/aws-indexes/bowtie
 #Hisat2 index of mm10 (transcriptome) - Download them manually from https://daehwankimlab.github.io/hisat2/download
 #At the end of the file is an example with the mm10 genome. For custom genomes, you should build the indexes using a fasta file containing the sequence of interest (Check the bowtie2 or hisat2 manuals).
+
+TOOLS=/home/alexandros/tools #Change the directory accordingly
+INDEXES=/home/alexandros/genomes #Change the directory accordingly
+
+mkdir -p $TOOLS
+cd $TOOLS
+
 
 ###Install umi_tools
 
@@ -140,7 +147,14 @@ else
     fi
 fi
 
-
 ### Hisat2 index
+mkdir -p $INDEXES/hisat2
+cd $INDEXES/hisat2
 wget https://genome-idx.s3.amazonaws.com/hisat/mm10_genome.tar.gz
+tar -xzf mm10_genome.tar.gz
+
+### Bowtie2 index
+mkdir -p $INDEXES/bowtie2
+cd $INDEXES/bowtie2
+wget https://genome-idx.s3.amazonaws.com/bt/mm10.zip
 tar -xzf mm10_genome.tar.gz
