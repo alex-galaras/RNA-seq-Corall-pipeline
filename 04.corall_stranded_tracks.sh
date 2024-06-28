@@ -1,9 +1,11 @@
-NORMALIZE=/home/alexandros/work/scripts/normalize_bedgraph.pl
-BAM_DIR=/media/samba/abam_umi_dedup
+HOME_PATH=/media/samba/alexandros/analysis
+NORMALIZE=normalize_bedgraph.pl #File provided in the repository
+BAM_DIR=$HOME_PATH/bam_umi_dedup
 BEDGRAPH_DIR=$BAM_DIR/bedgraphs
 BIGWIG_DIR=$BAM_DIR/bigwigs
 CORES=24
-LINK=http://epigenomics.fleming.gr/~alexandros/kontogiannis2024/coral
+LINK=http://epigenomics.fleming.gr/~alexandros/
+BEDTOOLS=/home/alexandros/tools/bedtools2/bin/bedtools
 
 mkdir -p $BEDGRAPH_DIR
 mkdir -p $BIGWIG_DIR
@@ -40,9 +42,9 @@ samtools merge -@ $CORES $SAMPLE"_for.bam" mate1_forward.bam mate2_reverse.bam
 samtools merge -@ $CORES $SAMPLE"_rev.bam" mate1_reverse.bam mate2_forward.bam
 
 #### tracks
-/home/alexandros/tools/bedtools2/bin/bedtools genomecov -bg -split -ibam $SAMPLE"_for.bam" | grep -vP 'chrJH|chrMT|chrGL|_GL|_JH'  | sort -k1,1 -k2g,2 > $SAMPLE".plus.bedGraph" 
+$BEDTOOLS genomecov -bg -split -ibam $SAMPLE"_for.bam" | grep -vP 'chrJH|chrMT|chrGL|_GL|_JH'  | sort -k1,1 -k2g,2 > $SAMPLE".plus.bedGraph" 
 
-/home/alexandros/tools/bedtools2/bin/bedtools genomecov -bg -split -ibam $SAMPLE"_rev.bam" | grep -vP 'chrJH|chrMT|chrGL|_GL|_JH' | sort -k1,1 -k2g,2 | awk '{ print $1"\t"$2"\t"$3"\t-"$4 }' > $SAMPLE".minus.bedGraph" 
+$BEDTOOLS genomecov -bg -split -ibam $SAMPLE"_rev.bam" | grep -vP 'chrJH|chrMT|chrGL|_GL|_JH' | sort -k1,1 -k2g,2 | awk '{ print $1"\t"$2"\t"$3"\t-"$4 }' > $SAMPLE".minus.bedGraph" 
 
 
 #Normalize
@@ -52,7 +54,7 @@ perl $NORMALIZE --input $SAMPLE".plus.bedGraph" --sumto 500000000 --exportfactor
 perl $NORMALIZE --input $SAMPLE".minus.bedGraph" --sumto -500000000 --exportfactors m_normfactors.txt --ncores 8
 
 #Create bigwig files for every bedGraph
-KENTTOOLS=/home/alexandros/tools
+KENTTOOLS=/home/alexandros/tools/bedGraphToBigWig
 GENOME=/media/raid/resources/igenomes/Mus_musculus/UCSC/mm10/Annotation/Genes/ChromInfo.txt
 
 for FILE in *_norm.bedGraph
@@ -71,7 +73,7 @@ container multiWig
 aggregate transparentOverlay
 showSubtrackColorOnUi on
 shortLabel $SAMPLE
-longLabel $SAMPLE quant-sequencing
+longLabel $SAMPLE RNA-sequencing
 boxedCfg on
 autoScale on
 maxHeightPixels 128:64:16
