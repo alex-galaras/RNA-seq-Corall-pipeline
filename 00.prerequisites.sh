@@ -4,6 +4,7 @@
 #bedtools
 #bowtie2
 #hisat2
+#bedgraphTobigwig
 
 
 #Genome information you need. In the current example, mm10 is used as a genome template.
@@ -116,3 +117,22 @@ else
     fi
 fi
 
+### Install bedGraphToBigWig
+
+# Check if bedGraphToBigWig is installed
+if command -v bedGraphToBigWig &> /dev/null
+then
+    echo "bedGraphToBigWig is already installed."
+else
+    echo "bedGraphToBigWig is not installed. Installing now."
+    
+    #Install bedGraphToBigWig
+    wget http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/bedGraphToBigWig
+    # Verify installation
+    if command -v bedGraphToBigWig &> /dev/null
+    then
+        echo "bedGraphToBigWig has been successfully installed."
+    else
+        echo "Failed to install bedGraphToBigWig."
+    fi
+fi
