@@ -6,10 +6,10 @@ FASTQ_PATH=/media/samba/alexandros/fastq_files/fastq_files_umi-extracted
 BAM_PATH=$FASTQ_PATH/hisat_files #the dir inside home_path dir, where hisat2 output files will be stored 
 
 # Command tool variables
-SAMTOOLS_COMMAND=/opt/ngstools/samtools/samtools
-HISAT2_COMMAND=/home/alexandros/tools/hisat2/hisat2-2.1.0/hisat2 #path to hisat2 alignment command
-BOWTIE2_COMMAND=/opt/ngstools/bowtie2/bowtie2
-BEDTOOLS_COMMAND=/home/alexandros/tools/bedtools2/bin/bedtools
+SAMTOOLS_COMMAND=$(command -v samtools)
+HISAT2_COMMAND=$(command -v hisat2) #path to hisat2 alignment command
+BOWTIE2_COMMAND=$(command -v bowtie2)
+BEDTOOLS_COMMAND=$(command -v bedtools)
 
 # Reference Genome Index
 HISAT2_INDEX=/home/alexandros/tools/hisat2/hisat2-2.1.0/indexes/mm10/genome 
