@@ -1,5 +1,6 @@
 #!/bin/bash
-
+UMI_TOOLS=$(command -v umi_tools)
+SAMTOOLS_COMMAND=$(command -v samtools)
 HOME_PATH=/media/samba/alexandros/analysis
 BAM_PATH=$HOME_PATH/bam_files_bef
 BAM_OUTPATH=$HOME_PATH/bam_umi_dedup
@@ -15,7 +16,7 @@ do
     SAMPLE=`basename $FILE | sed s/\.bam//`
     echo "===== Processing $SAMPLE..."
     
-    umi_tools dedup \
+    $UMI_TOOLS dedup \
       --output-stats $BAM_OUTPATH/$SAMPLE \
       --stdin $BAM_PATH/$SAMPLE".bam" \
       --stdout $BAM_OUTPATH/$SAMPLE".bam" \
