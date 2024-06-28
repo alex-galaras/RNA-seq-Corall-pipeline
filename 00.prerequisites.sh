@@ -157,4 +157,4 @@ tar -xzf mm10_genome.tar.gz
 mkdir -p $INDEXES/bowtie2
 cd $INDEXES/bowtie2
 wget https://genome-idx.s3.amazonaws.com/bt/mm10.zip
-tar -xzf mm10_genome.tar.gz
+unzip mm10.zip
