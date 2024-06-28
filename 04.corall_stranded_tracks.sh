@@ -5,7 +5,9 @@ BEDGRAPH_DIR=$BAM_DIR/bedgraphs
 BIGWIG_DIR=$BAM_DIR/bigwigs
 CORES=24
 LINK=http://epigenomics.fleming.gr/~alexandros/
-BEDTOOLS=/home/alexandros/tools/bedtools2/bin/bedtools
+BEDTOOLS=$(command -v bedtools)
+KENTTOOLS=/home/alexandros/tools/bedGraphToBigWig
+GENOME=/media/raid/resources/igenomes/Mus_musculus/UCSC/mm10/Annotation/Genes/ChromInfo.txt
 
 mkdir -p $BEDGRAPH_DIR
 mkdir -p $BIGWIG_DIR
@@ -54,8 +56,6 @@ perl $NORMALIZE --input $SAMPLE".plus.bedGraph" --sumto 500000000 --exportfactor
 perl $NORMALIZE --input $SAMPLE".minus.bedGraph" --sumto -500000000 --exportfactors m_normfactors.txt --ncores 8
 
 #Create bigwig files for every bedGraph
-KENTTOOLS=/home/alexandros/tools/bedGraphToBigWig
-GENOME=/media/raid/resources/igenomes/Mus_musculus/UCSC/mm10/Annotation/Genes/ChromInfo.txt
 
 for FILE in *_norm.bedGraph
 do
