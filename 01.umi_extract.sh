@@ -1,5 +1,5 @@
-FASTQ_PATH=/media/samba/kontogiannis_lab_pheno/data/mgi_rnaseq_02/RIP_analysis_alex/RIP_second_run/fastq_files
-FASTQ_OUTPATH=/media/samba/kontogiannis_lab_pheno/data/mgi_rnaseq_02/RIP_analysis_alex/RIP_second_run/fastq_files/fastq_files_umi-extracted
+FASTQ_PATH=/media/samba/alexandros/fastq_files
+FASTQ_OUTPATH=$FASTQ_PATH/fastq_files_umi-extracted
 
 if [ ! -d $FASTQ_OUTPATH ]
 then
@@ -8,8 +8,6 @@ fi
 
 
 BCPAT="NNNNNNNNNNNN"
-
-conda activate umi-tools
 
 for FILE in `ls $FASTQ_PATH/*_1.fq.gz`
 do
