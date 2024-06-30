@@ -12,8 +12,8 @@
 #Hisat2 index of mm10 (transcriptome) - Download them manually from https://daehwankimlab.github.io/hisat2/download
 #At the end of the file is an example with the mm10 genome. For custom genomes, you should build the indexes using a fasta file containing the sequence of interest (Check the bowtie2 or hisat2 manuals).
 
-TOOLS=/home/alexandros/tools #Change the directory accordingly
-INDEXES=/home/alexandros/genomes #Change the directory accordingly
+TOOLS=~/tools #Change the directory accordingly
+INDEXES=~/genomes #Change the directory accordingly
 
 mkdir -p $TOOLS
 cd $TOOLS
