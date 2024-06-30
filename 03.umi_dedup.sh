@@ -1,7 +1,7 @@
 #!/bin/bash
 UMI_TOOLS=$(command -v umi_tools)
 SAMTOOLS_COMMAND=$(command -v samtools)
-HOME_PATH=/media/samba/alexandros/analysis
+HOME_PATH=~/analysis
 BAM_PATH=$HOME_PATH/bam_files_bef
 BAM_OUTPATH=$HOME_PATH/bam_umi_dedup
 
