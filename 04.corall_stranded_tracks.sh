@@ -1,4 +1,4 @@
-HOME_PATH=/media/samba/alexandros/analysis
+HOME_PATH=~/analysis
 NORMALIZE=normalize_bedgraph.pl #File provided in the repository
 BAM_DIR=$HOME_PATH/bam_umi_dedup
 BEDGRAPH_DIR=$BAM_DIR/bedgraphs
