@@ -1,5 +1,5 @@
 UMI_TOOLS=$(command -v umi_tools)
-FASTQ_PATH=/media/samba/alexandros/fastq_files
+FASTQ_PATH=~/fastq_files
 FASTQ_OUTPATH=$FASTQ_PATH/fastq_files_umi-extracted
 
 if [ ! -d $FASTQ_OUTPATH ]
