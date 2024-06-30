@@ -71,3 +71,11 @@ do
         $BAM_PATH/$SAMPLE".tmb"
     echo " "
 done
+
+echo "===== Moving all bam files in a common directory..."
+mkdir -p $HOME_PATH/bam_files_bef
+
+for FILE in BAM_PATH/*.bam
+do
+mv $FILE $HOME_PATH/bam_files_bef
+done
