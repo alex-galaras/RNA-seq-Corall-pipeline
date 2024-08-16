@@ -5,6 +5,7 @@ BEDGRAPH_DIR=$BAM_DIR/bedgraphs
 BIGWIG_DIR=$BAM_DIR/bigwigs
 CORES=24
 LINK=http://epigenomics.fleming.gr/~alexandros/
+SAMTOOLS=$(command -v samtools)
 BEDTOOLS=$(command -v bedtools)
 KENTTOOLS=$(command -v bedGraphToBigWig)
 GENOME=/media/raid/resources/igenomes/Mus_musculus/UCSC/mm10/Annotation/Genes/ChromInfo.txt
@@ -19,29 +20,29 @@ SAMPLE=`basename $FILE | sed s/\.bam//`
 #### First mate
 # First mate - forward strand
 # Flags: -f 64 (first read in pair), -F 16 (exclude reverse strand reads)
-samtools view -@ $CORES -bh -f64 -F16 $FILE > mate1_forward.bam    # Create BAM for first read in pair mapped to forward strand
-samtools index -@ $CORES mate1_forward.bam                        # Index the BAM file
+$SAMTOOLS view -@ $CORES -bh -f64 -F16 $FILE > mate1_forward.bam    # Create BAM for first read in pair mapped to forward strand
+$SAMTOOLS index -@ $CORES mate1_forward.bam                        # Index the BAM file
 
 # First mate - reverse strand
 # Flags: -f 80 (first read in pair & reverse strand)
-samtools view -bh -@ $CORES -f80 $FILE > mate1_reverse.bam   # Create BAM for second read in pair mapped to forward strand
-samtools index -@ $CORES mate1_reverse.bam                        # Index the BAM file
+$SAMTOOLS view -bh -@ $CORES -f80 $FILE > mate1_reverse.bam   # Create BAM for second read in pair mapped to forward strand
+$SAMTOOLS index -@ $CORES mate1_reverse.bam                        # Index the BAM file
 
 #### Second mate
 
 # Second mate - forward strand
 # Flags: -f 128 (second read in pair), -F 16 (exclude reverse strand reads)
-samtools view -bh -@ $CORES -f128 -F16 $FILE > mate2_forward.bam           # Create BAM for second read in pair mapped to forward strand
-samtools index -@ $CORES mate2_forward.bam                                # Index the BAM file
+$SAMTOOLS view -bh -@ $CORES -f128 -F16 $FILE > mate2_forward.bam           # Create BAM for second read in pair mapped to forward strand
+$SAMTOOLS index -@ $CORES mate2_forward.bam                                # Index the BAM file
 
 # Second mate - reverse strand
 # Flags: -f 144 (second read in pair, mapped to reverse strand)
-samtools view -bh -@ $CORES -f144 $FILE > mate2_reverse.bam               # Create BAM for second read in pair mapped to reverse strand
-samtools index -@ $CORES mate2_reverse.bam                               # Index the BAM file
+$SAMTOOLS view -bh -@ $CORES -f144 $FILE > mate2_reverse.bam               # Create BAM for second read in pair mapped to reverse strand
+$SAMTOOLS index -@ $CORES mate2_reverse.bam                               # Index the BAM file
 
 ###Merge
-samtools merge -@ $CORES $SAMPLE"_for.bam" mate1_forward.bam mate2_reverse.bam
-samtools merge -@ $CORES $SAMPLE"_rev.bam" mate1_reverse.bam mate2_forward.bam
+$SAMTOOLS merge -@ $CORES $SAMPLE"_for.bam" mate1_forward.bam mate2_reverse.bam
+$SAMTOOLS merge -@ $CORES $SAMPLE"_rev.bam" mate1_reverse.bam mate2_forward.bam
 
 #### tracks
 $BEDTOOLS genomecov -bg -split -ibam $SAMPLE"_for.bam" | grep -vP 'chrJH|chrMT|chrGL|_GL|_JH'  | sort -k1,1 -k2g,2 > $SAMPLE".plus.bedGraph" 
