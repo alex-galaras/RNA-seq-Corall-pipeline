@@ -61,7 +61,7 @@ perl $NORMALIZE --input $SAMPLE".minus.bedGraph" --sumto -500000000 --exportfact
 for FILE in *_norm.bedGraph
 do
 	SAMPLE=`basename $FILE | sed s/\.bedGraph//`
-	$KENTTOOLS/bedGraphToBigWig $FILE $GENOME $SAMPLE".bigWig"
+	$KENTTOOLS $FILE $GENOME $SAMPLE".bigWig"
 done
 
 for FILE in *.plus_norm.bigWig
