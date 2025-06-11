@@ -38,7 +38,8 @@ do
         -S $BAM_PATH/hisat2.sam \
         --no-unal \
         --no-mixed \
-        --no-discordant
+        --no-discordant \
+        --rna-strandness FR #Please note, that Read 1 reflects the RNA transcript sequence not the cDNA sequence
     echo " "
     
     echo "===== Trying to map unmapped reads with bowtie2 for $SAMPLE..."
